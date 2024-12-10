@@ -33,7 +33,6 @@ def calculate_focal(distance_from_cam, head_width, img):
     face_classifier = cv2.CascadeClassifier(
         cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
     )
-    print(type(img))
     image_height = img.shape[0]
     image_width = img.shape[1]
 
@@ -90,7 +89,7 @@ def detect_bounding_box(vid, focal, head_width, head_boxes):
         cv2.putText(vid, text, (10, i*25 + 15), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255,0,0), 2)
     return vid
 
-def image_capture(path, num_images, countdown_time):
+def image_capture(num_images, countdown_time):
     """
     Function for image collection. The user will follow this process:
     
@@ -105,8 +104,6 @@ def image_capture(path, num_images, countdown_time):
 
     Parameters
     ----------
-
-    path (str): Indicates path user wants to save images in.
     num_images (int): amount of images user wants to take for their dataset
 
 
@@ -116,6 +113,7 @@ def image_capture(path, num_images, countdown_time):
     """
 
     # Creates the path if it does not already exist
+    path = os.path.join("data", "images")
     if not os.path.exists(path):
         os.makedirs(path)
 
@@ -224,14 +222,11 @@ if __name__ == "__main__":
 
 
     ## IMAGE COLLECTION
-    # Where you would like to save these images. Default is preferred.
-    folder_path = os.path.join("data", "images")
-
     # How many images you want to take
-    img_count = 50
+    img_count = 5
 
     # Amount of time between image captures
-    countdown_time = 5
+    countdown_time = 3
 
 
     ## MAIN FUNCTION
@@ -240,8 +235,8 @@ if __name__ == "__main__":
 
     # --------------------------------------------
 
-    #image_capture(folder_path, int(img_count), int(countdown_time))
-    facial_detection(distance_from_camera, head_width, img, path_to_model)
+    #image_capture(int(img_count), int(countdown_time))
+    #facial_detection(distance_from_camera, head_width, img, path_to_model)
     #model_test()
     #correct_functionality()
 
