@@ -113,9 +113,12 @@ def image_capture(num_images, countdown_time):
     """
 
     # Creates the path if it does not already exist
-    path = os.path.join("data", "images")
-    if not os.path.exists(path):
-        os.makedirs(path)
+    if not os.path.exists(os.path.join("data")):
+        os.makedirs(os.path.join("data", "images"))
+        os.makedirs(os.path.join("data", "labels"))
+
+    path_to_images = os.path.join("data", "images")
+
 
     # Takes a live feed
     video_capture = cv2.VideoCapture(0)
@@ -130,7 +133,7 @@ def image_capture(num_images, countdown_time):
         result, training_frame = video_capture.read()
         
         # Saves image in path. It creates a unique id for each image as well so there are no file mixups.
-        image_name = os.path.join(path, 'image' + str(i+1) + '.' + str(uuid.uuid1())+'.jpg')
+        image_name = os.path.join(path_to_images, 'image' + str(i+1) + '.' + str(uuid.uuid1())+'.jpg')
         cv2.imwrite(image_name, training_frame)
 
         print("Image: {}".format(i+1))
