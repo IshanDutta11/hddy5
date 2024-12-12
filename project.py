@@ -240,6 +240,3 @@ if __name__ == "__main__":
 
     #image_capture(int(img_count), int(countdown_time))
     #facial_detection(distance_from_camera, head_width, img, path_to_model)
-    #model_test()
-    #correct_functionality()
-
